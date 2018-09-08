@@ -1,8 +1,8 @@
 "use strict";
 
-const W = 32;
-const N = 624;
-const M = 397;
+const W = 64;
+const N = 312;
+const M = 156;
 const R = 31;
 
 const A = 0xB5026F5AA96619E9;
