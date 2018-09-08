@@ -1,27 +1,27 @@
 "use strict";
 
-const W = 64;
-const N = 312;
-const M = 156;
+const W = 32;
+const N = 624;
+const M = 397;
 const R = 31;
 
-const A = 0xB5026F5AA96619E9;
+const A = 0x9908B0DF;
 
-const U = 29;
-const D = 0x5555555555555555;
+const U = 11;
+const D = 0xFFFFFFFF;
 
-const S = 17;
-const B = 0x71D67FFFEDA60000;
+const S = 7;
+const B = 0x9D2C5680;
 
-const T = 37;
-const C = 0xFFF7EEE000000000;
+const T = 15;
+const C = 0xEFC60000;
 
-const L = 43;
+const L = 18;
 
-const F = 0x5851f42d4c957f2d;
+const F = 1812433253;
 
-const LOWER_MASK = (1 << R) - 1;
-const UPPER_MASK = ~LOWER_MASK;
+const LOWER_MASK = 0x7FFFFFFF;
+const UPPER_MASK = 0x80000000;
 
 let mt = new Array(N);
 let index = N + 1;
@@ -72,32 +72,9 @@ let twist = () => {
 	index = 0;
 };
 
-seedMT(0x0000000012345678);
+seedMT(0x12345678);
 
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
-console.log(extractNumber());
+for (let i = 0; i < 1000; i += 1) {
+	let extractedNumber = extractNumber();
+	console.log(extractedNumber);
+}
