@@ -28,6 +28,10 @@ let index = N + 1;
 
 let seedMT = (seed) => {
 	
+	if (index <= N) {
+		throw new Error('이미 seed가 설정되어 있습니다.');
+	}
+	
 	index = N;
 	mt[0] = seed;
 	

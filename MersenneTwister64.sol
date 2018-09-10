@@ -32,6 +32,9 @@ contract MersenneTwister64 {
 	
 	function seedMT(uint64 seed) payable public {
 		
+		// seed는 한번만 설정 가능
+		require(index == N + 1);
+		
 		index = N;
 		mt[0] = seed;
 		
@@ -43,8 +46,9 @@ contract MersenneTwister64 {
 	function extractNumber() payable public {
 		
 		if (index >= N) {
-			require(index <= N);
+			require(index == N);
 			
+			// twist
 			for (uint64 i = 0; i < N; i += 1) {
 				uint64 x = (mt[i] & UPPER_MASK) + (mt[(i + 1) % N] & LOWER_MASK);
 				uint64 xA = x >> 1;
