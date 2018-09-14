@@ -1,6 +1,8 @@
 pragma solidity ^0.4.24;
 
-contract MersenneTwister {
+// Mersenne Twister 알고리즘 구현 (32Bit Integer용)
+// https://github.com/Hanul/MersenneTwister
+contract MersenneTwister32 {
 	
 	uint32 constant private W = 32;
 	uint32 constant private N = 624;

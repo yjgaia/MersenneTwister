@@ -1,5 +1,7 @@
 pragma solidity ^0.4.24;
 
+// Mersenne Twister 알고리즘 구현 (64Bit Integer용)
+// https://github.com/Hanul/MersenneTwister
 contract MersenneTwister64 {
 	
 	uint64 constant private W = 64;
