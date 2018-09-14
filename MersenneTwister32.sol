@@ -32,7 +32,7 @@ contract MersenneTwister32 {
 	
 	uint32 public extractedNumber;
 	
-	function seedMT(uint32 seed) payable public {
+	function seedMT(uint32 seed) public {
 		
 		// seed는 한번만 설정 가능
 		require(index == N + 1);
@@ -45,24 +45,12 @@ contract MersenneTwister32 {
 		}
 	}
 	
-	function extractNumber() payable public {
+	function extractNumber() public {
 		
 		if (index >= N) {
 			require(index == N);
 			
-			// twist
-			for (uint32 i = 0; i < N; i += 1) {
-				uint32 x = (mt[i] & UPPER_MASK) + (mt[(i + 1) % N] & LOWER_MASK);
-				uint32 xA = x >> 1;
-				
-				if ((x % 2) != 0) {
-					xA = xA ^ A;
-				}
-				
-				mt[i] = mt[(i + M) % N] ^ xA;
-			}
-			
-			index = 0;
+			twist();
 		}
 		
 		uint32 y = mt[index];
@@ -74,5 +62,21 @@ contract MersenneTwister32 {
 		index += 1;
 		
 		extractedNumber = y;
+	}
+	
+	function twist() private {
+		
+		for (uint32 i = 0; i < N; i += 1) {
+			uint32 x = (mt[i] & UPPER_MASK) + (mt[(i + 1) % N] & LOWER_MASK);
+			uint32 xA = x >> 1;
+			
+			if ((x % 2) != 0) {
+				xA = xA ^ A;
+			}
+			
+			mt[i] = mt[(i + M) % N] ^ xA;
+		}
+		
+		index = 0;
 	}
 }
