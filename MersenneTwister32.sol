@@ -45,7 +45,7 @@ contract MersenneTwister32 {
 		}
 	}
 	
-	function extractNumber() public {
+	function extractNumber() public returns (uint32) {
 		
 		if (index >= N) {
 			require(index == N);
@@ -62,6 +62,8 @@ contract MersenneTwister32 {
 		index += 1;
 		
 		extractedNumber = y;
+		
+		return extractedNumber;
 	}
 	
 	function twist() private {
